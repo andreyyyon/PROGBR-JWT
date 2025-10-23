@@ -1,2 +1,2 @@
-# PROGBR-JTW
+# PROGBR-JWT
 API de autenticação com JWT
