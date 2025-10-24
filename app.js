@@ -14,8 +14,9 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const userRouter = require("./routes/userRouter")
-const mongoose = require("mongoose")    
+const userRouter = require("./routes/userRouter");
+const adminRouter = require("./routes/adminRouter");
+const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_CONNECTION_URL);
 let db = mongoose.connection;
@@ -25,6 +26,8 @@ db.once("open", () => { console.log("Sucesso na abertura do Banco de Dados") });
 
 app.use("/user", express.json(), userRouter);
 
+app.use("/admin", express.json(), adminRouter);
+
 app.listen(process.env.PORT, () => {
-    console.log("Server Running")
+    console.log("Server Running");
 })
