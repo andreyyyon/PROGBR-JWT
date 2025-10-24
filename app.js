@@ -24,6 +24,17 @@ let db = mongoose.connection;
 db.on("error", () => { console.log("Erro na abertura do Banco de Dados") });
 db.once("open", () => { console.log("Sucesso na abertura do Banco de Dados") });
 
+/*
+    Como forçar o uso de HTTPS no dominio:
+    app.use("*", (req, res, next) => {
+        if(req.header["x-forwarded-proto"] == "https"){
+            next();
+        }else{
+            res.redirect("https://" + req.headers.host + req.originalUrl)
+        }
+    });
+*/
+
 app.use("/user", express.json(), userRouter);
 
 app.use("/admin", express.json(), adminRouter);
